@@ -33,7 +33,7 @@ jobs:
 
       # Step 4: Install Playwright browsers
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
 
       # Step 5: Execute automation tests
       - name: Run Playwright tests

@@ -6,16 +6,20 @@ export class LoginPage {
     readonly username: Locator;
     readonly password: Locator;
     readonly loginButton: Locator;
+    readonly errorMessage: Locator;
+    readonly dismissErrorButton: Locator;
 
     constructor(page: Page) {
 
         this.page = page;
 
-        this.username = page.locator('#user-name');
+        this.username = page.getByPlaceholder('Username');
 
-        this.password = page.locator('#password');
+        this.password = page.getByPlaceholder('Password');
 
-        this.loginButton = page.locator('#login-button');
+        this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.errorMessage = page.getByRole('alert');
+        this.dismissErrorButton = page.getByRole('button', { name: 'Dismiss error' });
 
     }
 
@@ -25,11 +29,11 @@ export class LoginPage {
 
     }
 
-    async login(user: string, pass: string) {
+    async login(username: string, password: string) {
 
-        await this.username.fill(user);
+        await this.username.fill(username);
 
-        await this.password.fill(pass);
+        await this.password.fill(password);
 
         await this.loginButton.click();
 
